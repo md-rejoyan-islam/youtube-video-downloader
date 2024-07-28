@@ -1,0 +1,23 @@
+{
+  "name": "Youtube Video Downloader",
+  "short_name": "YVD",
+  "description": "Download Youtube Videos",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "icons": {
+    "16": "/assets/icons/downloading16.png",
+    "24": "/assets/icons/downloading24.png",
+    "64": "/assets/icons/downloading64.png",
+    "128": "/assets/icons//downloading128.png"
+  },
+  "action": {
+    "default_popup": "./index.html",
+    "default_title": "Youtube Video Downloader",
+    "default_icon": {
+      "16": "/assets/icons/downloading16.png",
+      "24": "/assets/icons/downloading24.png",
+      "64": "/assets/icons/downloading64.png",
+      "128": "/assets/icons//downloading128.png"
+    }
+  }
+}
