@@ -1,5 +1,4 @@
 import { FormEvent, useState } from "react";
-import "./App.css";
 import axios from "axios";
 import Error from "./components/Error";
 import Thumbnail from "./components/Thumbnail";
