@@ -49,18 +49,24 @@ function App() {
     <>
       <main className="min-w-[350px] max-w-[600px] mx-auto border border-black/50 p-4 rounded-md ">
         <h1 className="text-xl font-semibold text-center">
-          Youtube downloader
+          Youtube Video Downloader
         </h1>
         <div className="pt-4">
-          <form action="" onSubmit={handleSubmit}>
+          <form className="flex items-center " onSubmit={handleSubmit}>
             <input
               type="text"
-              className="py-2 px-4 rounded-md border w-full border-blue-500 focus:ring-[4px] focus:outline-none focus:ring-blue-500  focus:ring-offset-[2.5px] focus:ring-offset-black text-white bg-transparent"
+              className=" px-4 basis-3/4 h-12 rounded-l-md border-[3px] w-full border-blue-500 focus:outline-none  text-white bg-transparent"
               name="url"
               placeholder="Enter Youtube URL"
             />
-            <button className=" px-4 rounded-md bg-violet-500 text-white h-10 w-full mt-4 active:scale-[.95]">
-              {loading ? <SmallLoading /> : "Submit"}
+            <button className=" px-4 basis-1/4 rounded-r-md  bg-blue-500 text-white h-12 w-full active:scale-[.95]">
+              {loading ? (
+                <SmallLoading />
+              ) : (
+                <span className="font-bold uppercase flex items-center gap-2 ">
+                  Search <span className="text-2xl mb-1.5">&raquo;</span>
+                </span>
+              )}
             </button>
           </form>
           {/* error message */}
@@ -76,7 +82,7 @@ function App() {
                 <img
                   src={videoInfo?.thumbnail}
                   alt=""
-                  className="max-w-[400px] h-fit rounded-sm"
+                  className="max-w-[400px] h-fit rounded-sm mx-auto"
                 />
               </figure>
               <p> {videoInfo?.title} </p>
