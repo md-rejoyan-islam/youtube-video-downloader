@@ -5,10 +5,14 @@ import Error from "./components/Error";
 import Thumbnail from "./components/Thumbnail";
 import Formats from "./components/Formats";
 import SubmitButton from "./components/SubmitButton";
-import { Format } from "./definitions";
+import { VideoInfo } from "./definitions";
 
 function App() {
-  const [videoInfo, setVideoInfo] = useState<Format>({});
+  const [videoInfo, setVideoInfo] = useState<VideoInfo>({
+    thumbnail: "",
+    title: "",
+    formats: [],
+  });
 
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,7 +29,11 @@ function App() {
     try {
       setError("");
       setLoading(true);
-      setVideoInfo({});
+      setVideoInfo({
+        thumbnail: "",
+        title: "",
+        formats: [],
+      });
 
       const response = await axios.post("http://localhost:5000/formats", {
         url,
@@ -47,7 +55,7 @@ function App() {
   };
   return (
     <>
-      <main className="min-w-[350px] max-w-[600px] mx-auto border border-black/50 p-4 rounded-md  text-white/90">
+      <main className="min-w-[350px] max-w-[600px] mx-auto border border-blue-300/10 px-5 pt-5 pb-12 rounded-md  text-white/90">
         <h1 className="text-xl font-semibold text-center flex items-center gap-2 justify-center">
           Youtube Video Downloader
           <span className=" animate-bounce">
@@ -71,12 +79,14 @@ function App() {
           {error && <Error message={error} />}
 
           {/* thumnail show */}
-          {videoInfo && (
+          {videoInfo.title && (
             <Thumbnail src={videoInfo?.thumbnail} title={videoInfo?.title} />
           )}
 
           {/* avaliable format */}
-          <Formats formats={videoInfo?.formats} />
+          {videoInfo?.formats?.length > 0 && (
+            <Formats formats={videoInfo?.formats} />
+          )}
         </div>
       </main>
     </>
