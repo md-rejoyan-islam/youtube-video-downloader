@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "crx",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "axios": "^1.7.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.25",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",

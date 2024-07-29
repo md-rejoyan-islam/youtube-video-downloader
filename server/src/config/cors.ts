@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import { CorsOptions } from "cors";
 
 // whitelist is an array of URLs that are allowed to access the API

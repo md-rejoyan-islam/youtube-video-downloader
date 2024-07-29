@@ -1,20 +1,25 @@
 import dotenv from "dotenv";
 import express, { Response, NextFunction, Request } from "express";
 import cors from "cors";
-import corsOptions from "./config/cors";
-
 import fs from "fs";
+
+// import fs from "fs";
 import ytdl from "ytdl-core";
+import fileSize from "./helper/fileSize";
 
 // app initialization
 const app = express();
+
+// body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // port setup
 dotenv.config();
 const port = process.env.SERVER_PORT || 3000;
 
 // cors setup
-app.use(cors(corsOptions));
+app.use(cors());
 
 // home route
 app.get("/", (_req: Request, res: Response) => {
@@ -33,8 +38,23 @@ app.post(
       // get url from request body
       const { url } = req.body;
 
+      if (!url) throw new Error("URL is required");
+
       // get video info
       const info = await ytdl.getInfo(url);
+
+      const qualities = ytdl.chooseFormat(info.formats, {
+        quality: "highestvideo",
+        filter: "videoandaudio",
+      });
+
+      // start download video this folder
+      const ress = ytdl(url, { format: qualities }).pipe(
+        fs.createWriteStream("video.mp4")
+      );
+
+      console.log(qualities);
+      console.log(ress);
 
       // response send
       res.status(200).json({
@@ -42,16 +62,24 @@ app.post(
         message: "Video route",
         data: {
           title: info.videoDetails.title,
-          thumbnail: info.videoDetails.thumbnails[0].url,
+          thumbnail:
+            info.videoDetails.thumbnails[
+              info.videoDetails.thumbnails.length - 1
+            ].url,
           formats: info.formats.map((format) => ({
             itag: format.itag,
             quality: format.qualityLabel,
             type: format.mimeType,
+            size: format?.contentLength ? fileSize(format.contentLength) : null,
+            container: format?.container,
+            url: format?.url,
           })),
         },
       });
     } catch (error) {
-      next(error);
+      console.log(error);
+
+      next(new Error("Please enter valid video URL."));
     }
   }
 );
@@ -68,8 +96,8 @@ app.post(
 
       // get video format
       const videoFormat = ytdl.chooseFormat(info.formats, {
-        quality: quality,
-        format: "mp4", // can audio
+        quality: quality || "highest",
+        filter: "videoandaudio",
       });
 
       // response send
