@@ -1,9 +1,6 @@
 import dotenv from "dotenv";
 import express, { Response, NextFunction, Request } from "express";
 import cors from "cors";
-import fs from "fs";
-
-// import fs from "fs";
 import ytdl from "ytdl-core";
 import fileSize from "./helper/fileSize";
 
@@ -42,19 +39,6 @@ app.post(
 
       // get video info
       const info = await ytdl.getInfo(url);
-
-      const qualities = ytdl.chooseFormat(info.formats, {
-        quality: "highestvideo",
-        filter: "videoandaudio",
-      });
-
-      // start download video this folder
-      const ress = ytdl(url, { format: qualities }).pipe(
-        fs.createWriteStream("video.mp4")
-      );
-
-      console.log(qualities);
-      console.log(ress);
 
       // response send
       res.status(200).json({
