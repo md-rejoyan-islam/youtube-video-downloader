@@ -27,7 +27,6 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 // get video available formats
-
 app.post(
   "/formats",
   async (req: Request, res: Response, next: NextFunction) => {
@@ -68,37 +67,37 @@ app.post(
   }
 );
 
-// download
-app.post(
-  "/download",
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      // get url and quality from request body
-      const { url, quality } = req.body;
+// // download
+// app.post(
+//   "/download",
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//       // get url and quality from request body
+//       const { url, quality } = req.body;
 
-      const info = await ytdl.getInfo(url);
+//       const info = await ytdl.getInfo(url);
 
-      // get video format
-      const videoFormat = ytdl.chooseFormat(info.formats, {
-        quality: quality || "highest",
-        filter: "videoandaudio",
-      });
+//       // get video format
+//       const videoFormat = ytdl.chooseFormat(info.formats, {
+//         quality: quality || "highest",
+//         filter: "videoandaudio",
+//       });
 
-      // response send
-      res.status(200).json({
-        success: true,
-        message: "Download route",
-        data: {
-          title: info.videoDetails.title,
-          thumbnail: info.videoDetails.thumbnails[0].url,
-          video: videoFormat.url,
-        },
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+//       // response send
+//       res.status(200).json({
+//         success: true,
+//         message: "Download route",
+//         data: {
+//           title: info.videoDetails.title,
+//           thumbnail: info.videoDetails.thumbnails[0].url,
+//           video: videoFormat.url,
+//         },
+//       });
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// );
 
 // 404 route
 app.use("*", (_req: Request, res: Response) => {
