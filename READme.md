@@ -28,7 +28,7 @@ cd youtube-video-downloader-server-app
 npm install
 
 # Start the server
-npm start
+npm run dev
 ```
 
 ## Live Preview
