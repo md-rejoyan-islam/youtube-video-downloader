@@ -34,9 +34,12 @@ function App() {
         formats: [],
       });
 
-      const response = await axios.post("http://localhost:5000/formats", {
-        url,
-      });
+      const response = await axios.post(
+        `${import.meta.env.SERVER_URL}/formats`,
+        {
+          url,
+        }
+      );
       setVideoInfo(response?.data?.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
