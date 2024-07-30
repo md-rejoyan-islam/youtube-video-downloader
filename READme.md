@@ -14,3 +14,25 @@ This project is a Javascript script that allows users to download YouTube videos
 - Support for multiple video qualities (1080p, 720p, 480p, etc.)
 - Ability to download audio only or video only
 - Support for playlists and individual video downloads
+
+## Installation
+
+To install this project, follow these steps:
+
+```bash
+# Clone the repository
+git clone https://github.com/md-rejoyan-islam/youtube-video-downloader.git
+
+# Change into the project directory
+cd youtube-video-downloader-server-app
+
+# Install dependencies
+npm install
+
+# Start the server
+npm start
+```
+
+## Live Preview
+
+[Client URL](https://youtube-video-downloader-app.netlify.app/)
