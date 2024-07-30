@@ -1,7 +1,5 @@
 # YouTube Video Downloader Chrome Extension
 
-==========================
-
 A Javascript script to download YouTube videos
 
 ## Description
