@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# Youtube Video Downloader Chrome Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Chrome extension to download YouTube videos
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This Chrome extension allows users to download YouTube videos in various formats, including MP4,
+and WebM. The extension uses the `ytdl-core` library to interact with the YouTube API and download videos.
+The user can select the video quality and format they want to download.
+The extension also includes a feature to download subtitles in SRT format.
+The extension is built using HTML, CSS, and JavaScript, and uses the Chrome extension API to interact
+with the browser.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Download YouTube videos in various formats (MP4, MP3, WebM)
+- Support for multiple video qualities (1080p, 720p, 480p, etc.)
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+To install this extension, follow these steps:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repository using `https://github.com/md-rejoyan-islam/youtube-video-downloader.git`
+2. Open Chrome and go to `chrome://extensions/`
+3. Enable Developer mode
+4. Click on `Load unpacked` and select the extension directory
+5. The extension will be installed and appear in the Chrome toolbar
+6. Click on the extension icon to open the popup and start downloading videos
+7. Select the video quality and format you want to download
+8. Click on the download button to start the download
+9. The video will be downloaded to your default download directory
