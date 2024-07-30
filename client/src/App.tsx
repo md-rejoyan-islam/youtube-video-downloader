@@ -35,7 +35,7 @@ function App() {
       });
 
       const response = await axios.post(
-        `${import.meta.env.SERVER_URL}/formats`,
+        `${import.meta.env.VITE_SERVER_URL}/formats`,
         {
           url,
         }

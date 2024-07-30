@@ -3,6 +3,7 @@ import express, { Response, NextFunction, Request } from "express";
 import cors from "cors";
 import ytdl from "ytdl-core";
 import fileSize from "./helper/fileSize";
+import corsOptions from "./config/cors";
 
 // app initialization
 const app = express();
@@ -16,7 +17,7 @@ dotenv.config();
 const port = process.env.SERVER_PORT || 3000;
 
 // cors setup
-app.use(cors());
+app.use(cors(corsOptions));
 
 // home route
 app.get("/", (_req: Request, res: Response) => {
